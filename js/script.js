@@ -249,4 +249,5 @@ function win(){
    padArr.forEach(function(element){
    eval(element).style.background = 'yellow';
   });
+  startOver();
 }
