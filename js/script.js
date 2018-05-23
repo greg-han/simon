@@ -166,6 +166,9 @@ function updateDisplay(){
 
 function simonTurn(){
  turn = 'simon';
+ if(seqCount == 21){
+   win();
+ }
  if(!restart){
    sequence.unshift(selectBox());
    seqCount++;
@@ -226,5 +229,24 @@ function allNorm(){
   //Object.keys(idcolMap).forEach(function(elem){
    padArr.forEach(function(elem){
    eval(elem).style.background = regColors[idcolMap[String(elem)]];
+  });
+}
+
+function win(){
+  padArr.forEach(function(element){
+   eval(element).style.background = 'red';
+  });
+   setTimeout(function(){allNorm();},500);
+   padArr.forEach(function(element){
+   eval(element).style.background = 'green';
+  });
+  setTimeout(function(){allNorm();},500);
+   padArr.forEach(function(element){
+   eval(element).style.background = 'blue';
+  });
+  setTimeout(function(){allNorm();},500);
+   setTimeout(function(){allNorm();},500);
+   padArr.forEach(function(element){
+   eval(element).style.background = 'yellow';
   });
 }
