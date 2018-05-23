@@ -8,6 +8,7 @@ var padList = Object.freeze(["r","g","b","y"]);
 //or, alternatively, you can use arr.slice(0)
 //var sequence = ['r','g','y','y','y'];
 var restart = false;
+var started = false;
 var sequence = [];
 var seuenceStack = [];
 var resetStack = [];
@@ -21,12 +22,19 @@ var greenpad = document.getElementById("buttontr");
 var bluePad = document.getElementById("buttonbr");
 var yellowPad = document.getElementById("buttonbl");
 var numbers = document.getElementById("numtxt");
+var padArr = [ 'buttontl', 'buttontr','buttonbr','buttonbl'];
 var padMap = {
   'r' : 'buttontl',
   'g' : 'buttontr',
   'b' : 'buttonbr',
   'y' : 'buttonbl'
 };
+var domMap = {
+ 'buttontl' : 'redPad',
+ 'buttontr' : 'greenPad',
+ 'buttonbr' : 'bluePad',
+ 'buttonbl' : 'yellowPad'
+}
 var soundMap = {
  'buttontl' : 'tlPadSound',
  'buttontr' : 'trPadSound',
@@ -77,13 +85,15 @@ function selectBox(){
 }
 
 function startGame(){
+ if(!started){
+  started = true;
   allNorm();
   simonTurn();
    //end of if the game is in play;
+ }
 }
 
 function startOver(){
-  console.log("in restart");
   allRed();
   setTimeout(function(){allNorm()},750);
   sequence = [];
@@ -91,6 +101,7 @@ function startOver(){
   numbers.innerHTML = '00';
   seqCount = 0;
   updateDisplay();
+  started = false;
 }
 
 function changeTurn(){
@@ -183,37 +194,37 @@ function checkStack(input){
 }
 
 function lossSequence(){
- console.log("I'm in loss sequence");
- 
  if(strict){
-  allRed();
+  startOver();
   sequence = [];
   sequenceStack = [];
-  seqCount = 0;
-  numbers.innerHTML = '00';
+ // seqCount = 0;
+ // numbers.innerHTML = '00';
+  updateDisplay();
+  restart = false;
+  
  }
  else{
- sequence = JSON.parse(JSON.stringify(resetStack));
- allRed(); 
+ allRed();
  setTimeout(function(){allNorm()},750);
- //setTimeout(function(){allNorm();},11000);
+ sequence = JSON.parse(JSON.stringify(resetStack));
+ secCount = sequence.length;
+ updateDisplay();
  restart = true;
- startGame();
+ //startGame();
+  simonTurn();
  }
 }
 
 function allRed(){
-  console.log("In all red");
-  Object.keys(idcolMap).forEach(function(element){
-   //console.log(element);
+  padArr.forEach(function(element){
    eval(element).style.background = 'red';
-   console.log(eval(element).style.background);
   });
 }
 
 function allNorm(){
-  Object.keys(idcolMap).forEach(function(elem){
-   //console.log(elem);
+  //Object.keys(idcolMap).forEach(function(elem){
+   padArr.forEach(function(elem){
    eval(elem).style.background = regColors[idcolMap[String(elem)]];
   });
 }
