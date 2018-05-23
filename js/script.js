@@ -1,12 +1,19 @@
 window.onload = init;
+var tlPadSound;
+var trPadSound;
+var brPadSound;
+var blPadSound;
 var padList = Object.freeze(["r","g","b","y"]);
 //Here, you can use Json.parse Json.stringify
 //or, alternatively, you can use arr.slice(0)
-var sequence = ['r','g','b','y'];
+//var sequence = ['r','g','y','y','y'];
+var restart = false;
+var sequence = [];
 var seuenceStack = [];
+var resetStack = [];
 var seqCount = 0;
-var inPlay = false;
 var strict = false;
+var restart = false;
 var turn = '';
 var checkbox = document.getElementById("switch");
 var redPad = document.getElementById("buttontl");
@@ -20,6 +27,12 @@ var padMap = {
   'b' : 'buttonbr',
   'y' : 'buttonbl'
 };
+var soundMap = {
+ 'buttontl' : 'tlPadSound',
+ 'buttontr' : 'trPadSound',
+ 'buttonbr' : 'brPadSound',
+ 'buttonbl' : 'blPadSound'
+}
 var idcolMap = {
   'buttontl' : 'r',
   'buttontr' : 'g',
@@ -42,7 +55,10 @@ var regColors = {
 //will only matter if the game is in play
 
 function init(){
- turn = "simon";
+  tlPadSound = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound1.mp3');
+  trPadSound = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound2.mp3');
+  brPadSound = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound3.mp3');
+  blPadSound = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound4.mp3');
 }
 
 function toggleOn(){
@@ -54,32 +70,32 @@ function toggleOn(){
   strict = false;
   checkbox.checked = false;
  }
- console.log("strict",strict);
 }
-
 
 function selectBox(){
-  return Math.floor(Math.random()*4);
+  return padList[Math.floor(Math.random()*4)];
 }
-
 
 function startGame(){
- seqCount = sequence.length;
- if(!inPlay){
-  console.log(padList[selectBox()]);
- }//end of if the game is in play;
+  allNorm();
+  simonTurn();
+   //end of if the game is in play;
 }
 
-function restart(){
-  inPlay = false;
+function startOver(){
+  console.log("in restart");
+  allRed();
+  setTimeout(function(){allNorm()},750);
   sequence = [];
+  sequenceStack = [];
   numbers.innerHTML = '00';
   seqCount = 0;
+  updateDisplay();
 }
 
 function changeTurn(){
- if(turn == 'human'){turn = 'simon';}
- else{turn = 'human';}
+ if(turn == 'human'){ simonTurn();}
+ if(turn=='simon'){ humanTurn();}
 }
 
 //All of the functions under this comment  control the lighting
@@ -87,8 +103,12 @@ function changeTurn(){
 function setOff(offdoc,offcol){
  eval(offdoc).style.background = regColors[offcol];
  if(sequenceStack.length > 0){
-  populateBoard();}
+  //setTimeout(function(){populateBoard();},750);
+ populateBoard();
+ }
  else{
+  if(restart){restart = false;};
+  sequenceStack = [];
   changeTurn();
  }
 }
@@ -99,36 +119,101 @@ function offPad(offcol,doci){
 
 function lightPad(col){
   var docID = eval(padMap[col]);
+  eval(soundMap[String(docID.id)]).play();
   docID.style.background = lightColorMap[col];
   offPad(col,docID);
 }
 
 function populateBoard(){
   var color = sequenceStack.pop();
-  lightPad(color);
+  setTimeout(function(){lightPad(color);},750);
 }
 
 //end lighting functions;
 
 //human lighting functions
 function padDown(id){
-  if(!inPlay){
+  if(turn == "human"){
   eval(id).style.background = lightColorMap[idcolMap[String(id)]];
+  eval(soundMap[String(id)]).play();
   }
 }
 
 function padUp(divid){
-  if(!inPlay){
+  if(turn == "human"){
   eval(divid).style.background = regColors[idcolMap[String(divid)]];
+  //eval(soundMap[String(divid)]).pause();
+   checkStack(idcolMap[String(divid)]);
   }
  //put the function in here.
 }
+
+function updateDisplay(){
+ if(seqCount < 10){ numbers.innerHTML = '0' + String(seqCount); }
+ else{ numbers.innerHTML = String(seqCount);}
+}
+
 function simonTurn(){
+ turn = 'simon';
+ if(!restart){
+   sequence.unshift(selectBox());
+   seqCount++;
+ };
+ updateDisplay();
  sequenceStack = JSON.parse(JSON.stringify(sequence));
- populateBoard();
+ setTimeout(function(){populateBoard();},750);
 }
 
 
+function humanTurn(){
+  turn = 'human';
+  sequenceStack = JSON.parse(JSON.stringify(sequence));
+  resetStack = JSON.parse(JSON.stringify(sequence));
+}
 
+//If the turn is for human, pad will be unlocked and then every input will use checkStack.
+//This will continue until either the player gets all the way through, or the player is wrong.
+function checkStack(input){
+ if(sequenceStack.length != 0 && !(input == sequenceStack.pop())){
+  lossSequence();
+ }
+ if(sequenceStack == 0){
+  simonTurn();
+ }
+}
 
+function lossSequence(){
+ console.log("I'm in loss sequence");
+ 
+ if(strict){
+  allRed();
+  sequence = [];
+  sequenceStack = [];
+  seqCount = 0;
+  numbers.innerHTML = '00';
+ }
+ else{
+ sequence = JSON.parse(JSON.stringify(resetStack));
+ allRed(); 
+ setTimeout(function(){allNorm()},750);
+ //setTimeout(function(){allNorm();},11000);
+ restart = true;
+ startGame();
+ }
+}
 
+function allRed(){
+  console.log("In all red");
+  Object.keys(idcolMap).forEach(function(element){
+   //console.log(element);
+   eval(element).style.background = 'red';
+   console.log(eval(element).style.background);
+  });
+}
+
+function allNorm(){
+  Object.keys(idcolMap).forEach(function(elem){
+   //console.log(elem);
+   eval(elem).style.background = regColors[idcolMap[String(elem)]];
+  });
+}
