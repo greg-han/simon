@@ -1,0 +1,378 @@
+@import url('https://fonts.googleapis.com/css?family=Bungee');
+@import url('https://fonts.googleapis.com/css?family=Audiowide');
+@media screen and (max-width: 900px) {
+ body
+ .simonbox{
+ width: 400px;
+ height: 400px;
+ position: absolute;
+ margin-left: 0%;
+ margin-top: 3.3%;
+ border-radius: 100%;
+ }
+ body
+ .simoncontroller{
+min-width: 100px;
+min-height: 100px;
+width: 150px;
+height: 150px;
+position: absolute;
+border-radius: 100%;
+border: 4px solid black;
+background: grey;
+margin-left: 27.5%;
+margin-top: 27.5%;
+text-align:center;
+padding-top: 3px;
+}
+
+body
+.simonlogo{
+ color: #F8F8F8;
+ text-shadow: 3px 4px 5px #737373;
+ font-family: 'Bungee', cursive;
+ font-size: 0.8em;
+ position: relative;
+ margin-left: 30%;
+ margin-right: 25%;
+ margin-top: 10%;
+}
+body
+#pushbutton{
+ width: 10px;
+ height: 10px;
+ border-radius: 100%;
+ border: solid black;
+ background: #571a0d;
+ box-shadow: 0 0 10px  black;
+ margin-left: 27%;
+}
+body
+#pushbuttonrestart{
+ width: 10px;
+ height: 10px;
+ border-radius: 100%;
+ border: solid black;
+ background: #571a0d;
+ box-shadow: 0 0 10px  black;
+ margin-left: 62%;
+ margin-top: -18.5%;
+}
+body
+#numwindow{
+ width: 35px;
+ height: 25px; 
+ border: 4px solid black;
+ background: #9ebb17;
+ border-radius: 40%;
+ margin-left: 34.5%;
+ margin-top: 2%;
+ opacity: 0.5;
+}
+body
+#numtxt{
+  font-family: 'Audiowide', cursive;
+  text-align: center;
+  overflow: hidden;
+  font-size: 17.7px;
+  opacity: 0.5;
+}
+body
+#btntxt{
+ color: #F8F8F8;
+ text-shadow: 3px 4px 5px #737373;
+ font-size: 0.65em;
+ font-weight: bold;
+ margin-right: 36%;
+}
+body
+#btntxtrestart{
+color: #F8F8F8;
+ text-shadow: 3px 4px 5px #737373;
+ font-size: 0.65em;
+ font-weight: bold;
+ margin-left: 37.5%;
+}
+body
+ .stricttxt{
+ color: #F8F8F8;
+ text-shadow: 3px 4px 5px #737373;
+ font-size: 0.65em;
+ font-weight: bold;
+ margin-left: 26px;
+}
+body
+label {
+  margin-left: 42%;
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 20px;
+	height: 10px;
+	background: #76ca6d;
+	display: block;
+	border-radius: 100px;
+	position: relative;
+  border: 1px solid #585858;
+  box-shadow: 0 0 0.7px black;
+}
+body
+label:after {
+	content: '';
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 8px;
+	background: #A9A9A9;
+	border-radius: 90px;
+	transition: 0.3s;
+  border: 1px solid #585858;
+  box-shadow: 0 0 0.4px black;
+}
+body
+label:active:after {
+	width: 2.5px;
+}
+}
+
+body{
+background: #76b852;  /* fallback for old browsers */
+/*background: -webkit-linear-gradient(to right, #8DC26F, #76b852);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #8DC26F, #76b852); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
+
+.simonlogo{
+ color: #F8F8F8;
+ text-shadow: 3px 4px 5px #737373;
+ font-family: 'Bungee', cursive;
+ font-size: 1.5em;
+ position: relative;
+ margin-left: 30%;
+ margin-right: 25%;
+ margin-top: 10%;
+}
+
+#numwindow{
+ width: 70px;
+ height: 50px; 
+ border: 4px solid black;
+ background: #9ebb17;
+ border-radius: 40%;
+ margin-left: 34.5%;
+ margin-top: 2%;
+ opacity: 0.5;
+}
+#numtxt{
+  font-family: 'Audiowide', cursive;
+  text-align: center;
+  overflow: hidden;
+  font-size: 35px;
+  opacity: 0.5;
+}
+#btntxt{
+ color: #F8F8F8;
+ text-shadow: 3px 4px 5px #737373;
+ font-size: 1em;
+ font-weight: bold;
+ margin-right: 36%;
+}
+
+#btntxtrestart{
+color: #F8F8F8;
+ text-shadow: 3px 4px 5px #737373;
+ font-size: 1em;
+ font-weight: bold;
+ margin-left: 35%;
+}
+
+
+#pushbutton{
+ width: 20px;
+ height: 20px;
+ border-radius: 100%;
+ border: solid black;
+ background: #571a0d;
+ box-shadow: 0 0 10px  black;
+ margin-left: 27%;
+}
+
+#pushbutton:active {
+    background-color: #d70000;
+    box-shadow: 0 0 3px #696969;
+}
+
+#pushbuttonrestart{
+ width: 20px;
+ height: 20px;
+ border-radius: 100%;
+ border: solid black;
+ background: #571a0d;
+ box-shadow: 0 0 10px  black;
+ margin-left: 63%;
+ margin-top: -18%;
+}
+
+#pushbuttonrestart:active {
+    background-color: #d70000;
+    box-shadow: 0 0 3px #696969;
+}
+.simonbox{
+ width: 600px;
+ height: 600px;
+ 
+ min-width: 300px;
+ min-height: 300px;
+ max-width: 600px;
+ max-height: 600px;
+ /*position: relative;*/
+ position: absolute;
+ margin-left: 35%;
+ margin-top: 3.3%;
+/* background: #43464B;
+ box-shadow: 7px 7px 7px
+7px rgba(0.68,0.68,0.68,0.68),
+7px 7px 7px 7px #696969;*/
+ border-radius: 100%;
+ 
+}
+
+#buttontl{
+ float:left;
+ border: 5px solid black;
+ position:relative;
+ margin:0;
+ width: 45%;
+ height: 45%;
+ border-top-left-radius:100%;
+ min-width: 100px;
+ min-height: 100px;
+ background:red;
+ box-shadow: 0 0 15px black;
+}
+
+#buttontr{
+ float:left;
+ border: 5px solid black;
+ position:relative;
+ margin:0;
+ width: 45%;
+ height: 45%;
+ border-top-right-radius:100%;
+ min-width: 100px;
+ min-height: 100px;
+ background:green;
+ box-shadow: 0 0 15px black;
+}
+
+#buttonbl{
+ float: left;
+ border: 5px solid black;
+ position:relative;
+ margin:0;
+ width: 45%;
+ height: 45%;
+ border-bottom-left-radius:100%;
+ min-width: 100px;
+ min-height: 100px;
+ background:yellow;
+ box-shadow: 0 0 15px black;
+}
+
+#buttonbr{
+ float:left;
+ border:5px solid black;
+ position:relative;;
+ margin:0;
+ width: 45%;
+ height: 45%;
+ border-bottom-right-radius: 100%;
+ min-width: 100px;
+ min-height: 100px;
+ background:blue;
+ box-shadow: 0 0 15px black;
+}
+
+.simoncontroller{
+min-width: 100px;
+min-height: 100px;
+width: 250px;
+height: 250px;
+position: absolute;
+border-radius: 100%;
+border: 5px solid black;
+background: grey;
+margin-left: 25%;
+margin-top: 25%;
+text-align:center;
+padding-top: 3px;
+box-shadow: 0 0 10px black;
+}
+
+.countertxt{
+  color: #F8F8F8;
+  text-shadow: 3px 4px 5px #737373;
+  font-size: 1em;
+  font-weight: bold;
+  margin-left: 35%;
+  margin-top: -30%;
+  position: static;
+}
+
+.stricttxt{
+ color: #F8F8F8;
+ text-shadow: 3px 4px 5px #737373;
+ font-size: 1em;
+ font-weight: bold;
+ margin-left: 35px;
+ 
+}
+
+
+/*All of this is for the toggle box */
+input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+label {
+  margin-left: 42%;
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 40px;
+	height: 20px;
+	background: #76ca6d;
+	display: block;
+	border-radius: 100px;
+	position: relative;
+  border: 1px solid #585858;
+  box-shadow: 0 0 2px black;
+}
+
+label:after {
+	content: '';
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 20px;
+	height: 19px;
+	background: #A9A9A9;
+	border-radius: 90px;
+	transition: 0.3s;
+  border: 1px solid #585858;
+  box-shadow: 0 0 2px black;
+}
+
+input:checked + label {
+	background: #e75c5c;
+}
+
+input:checked + label:after {
+	left: calc(100% - 1px);
+	transform: translateX(-100%);
+}
+
+label:active:after {
+	width: 5px;
+}
