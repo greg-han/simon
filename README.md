@@ -5,6 +5,8 @@ Known Bugs: need to make the sound compatible with all browsers not just chrome.
 This can be done by using the html5 javascxript update.
 
 Link to site: https://greg-han.github.io/simon/
+If the github page is down, the project is viewable on codepen:
+https://codepen.io/greg-han/pen/ELrvew
 
 ## Features
 
